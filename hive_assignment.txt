@@ -1,0 +1,52 @@
+create database olympicdb;
+
+
+use olympicdb;
+
+
+
+create table olympicdata(athlete string,age int,country string,year string,closing_date string,sport string,gold_medals int,silver_medals int,bronze_medals int,total_medals int)row format delimited fields terminated by '\t' stored as textfile;
+
+
+
+load data inpath'/olympix_data.csv' into table olympicdata;
+
+
+
+1.Write a Hive program to find the number of medals won by each country in swimming.
+
+
+
+select country, sum(total_medals) from olympicdata where sport='Swimming'  group by country;
+
+
+
+
+
+2.Write a Hive program to find the number of medals that India won year wise.
+
+
+
+select year,sum(total_medals) from olympicdata where country='India' group by year;
+
+
+
+
+
+3.Write a Hive program to find the total number of medals each country won.
+
+
+
+select country,sum(total_medals) from olympicdata group by country;
+
+
+
+
+
+4.Write a Hive program to find the number of gold medals each country won.
+
+
+
+select country,sum(gold_medals) from olympicdata group by country;
+
+ 
